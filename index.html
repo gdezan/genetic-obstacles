@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="src/p5.js"></script>
+    <script src="src/dna.js"></script>
+    <script src="src/population.js"></script>
+    <script src="src/walker.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <title>Desvio de obstáculos</title>
+  </head>
+  <body>
+    <div class="main-title">
+      <h1>Desvio de obstáculos</h1>
+    </div>
+    <div class="main-container">
+      <div class="full-canvas">
+        <div class="box-shadow" id="canvas"></div>
+        <div class="playback box-shadow">
+          <button class="control-button btn" id="play-button">
+            <img src="assets/play-icon.svg" class="control-icon" alt="Play" />
+          </button>
+          <button class="control-button btn" id="pause-button">
+            <img src="assets/pause-icon.svg" class="control-icon" alt="Pause" />
+          </button>
+          <button class="control-button btn" id="refresh-button">
+            <img src="assets/refresh-icon.svg" class="control-icon" alt="Stop" />
+          </button>
+          <button class="control-button btn" id="trash-button">
+            <img src="assets/trash-icon.svg" class="control-icon" alt="Stop" />
+          </button>
+        </div>
+      </div>
+      <div class="side-containers">
+        <div class="controls box-shadow">
+          <div class="slider-line">
+            <div class="slider-title">
+              Velocidade:
+              <div class="slider-value" id="speed-value">10</div>
+            </div>
+            <input type="range" min="1" max="40" class="slider" id="speed-slider" />
+          </div>
+          <div class="slider-line">
+            <div class="slider-title">
+              Taxa de mutação:
+              <div class="slider-value" id="mutation-value">5</div>
+            </div>
+            <input type="range" min="0" max="100" class="slider" id="mutation-slider" />
+          </div>
+          <div class="slider-line">
+            <div class="slider-title">
+              Tamanho da população:
+              <div class="slider-value" id="elements-value">0</div>
+            </div>
+            <input type="range" min="1" max="500" class="slider" id="elements-slider" />
+          </div>
+          <div class="slider-line">
+            <div class="slider-title">
+              Duração da geração:
+              <div class="slider-value" id="lifespan-value">200 frames</div>
+            </div>
+            <input type="range" value="200" min="10" max="600" class="slider" id="lifespan-slider" />
+          </div>
+        </div>
+        <div class="info box-shadow">
+          <div class="count">Frames: 0</div>
+          <div class="generation">Geração: 0</div>
+          <div class="max-fit">Nota máxima: 0</div>
+        </div>
+      </div>
+    </div>
+    <script src="src/main.js"></script>
+  </body>
+</html>
