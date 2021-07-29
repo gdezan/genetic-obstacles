@@ -1,6 +1,8 @@
 # Desvio de obstáculos evolutivo
 
-O projeto tem por objetivo implementar um algoritmo evolutivo para desvio de obstáculos para acertar um alvo. Os obstáculos são setados pelo próprio usuário, por meio da interface.
+O projeto tem por objetivo implementar um algoritmo evolutivo para desvio de obstáculos para acertar um alvo. Os obstáculos são inseridos pelo próprio usuário, por meio da interface.
+
+Disponível em [https://gdezan.github.io/genetic-obstacles/](https://gdezan.github.io/genetic-obstacles/)
 
 # Funcionamento da aplicação
 
