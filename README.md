@@ -4,13 +4,13 @@ O projeto tem por objetivo implementar um algoritmo evolutivo para desvio de obs
 
 # Funcionamento da aplicação
 
-![alt text](https://github.com/gdezan/genetic-obstacles/blob/main/assets/initial_screen.png 'Tela inicial da aplicação')
+![alt text](https://github.com/gdezan/genetic-obstacles/blob/master/assets/initial_screen.png 'Tela inicial da aplicação')
 
 Conforme pode-se observar na figura acima, a aplicação dispõe de algumas funcionalidades. Falando primeiramente sobre os botões embaixo da tela de apresentação, temos quatro botões distintos: o de play, para dar início à execução do algoritmo; o de pause, para parar a execução do algoritmo; o de reset, para reiniciar a execução do algoritmo genérico para a primeira geração; o da lixeira, para excluir quaisquer obstáculos desenhados na tela.
 
 Sobre os obstáculos, eles são desenhados utilizando o esquema de drag and drop, ou seja, ao clicar no mouse, o obstáculo é desenhado e ao liberar o mouse, ele é inserido de fato na tela. Um exemplo da funcionalidade pode ser conferido no GIF abaixo.
 
-![alt text](https://github.com/gdezan/genetic-obstacles/blob/main/assets/dragndrop_demo.gif 'Demonstração da funcionalidade de drag and drop')
+![alt text](https://github.com/gdezan/genetic-obstacles/blob/master/assets/dragndrop_demo.gif 'Demonstração da funcionalidade de drag and drop')
 
 Também há o menu de sliders do lado direito da tela. Este menu fornece ao usuário a possibilidade de configurar quatro propriedades: a velocidade de cada indivíduo na tela, a taxa de mutação do algoritmo, o tamanho da população e a duração de cada geração em frames.
 
