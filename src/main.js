@@ -28,6 +28,7 @@ let populationSize = 100;
 let lifespan = 200;
 
 // Taxa de mutação inicial
+const originalMutationRate = 0.01;
 let mutationRate = 0.01;
 
 // Velocidade inicial do indivíduo
@@ -144,6 +145,7 @@ function draw() {
     maxFitness = population.evaluate(target);
 
     // Faz a geração da nova população
+    mutationRate = population.evaluateMutationRate(mutationRate, originalMutationRate);
     population.selection(mutationRate);
 
     generation++;

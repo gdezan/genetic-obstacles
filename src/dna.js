@@ -18,16 +18,9 @@ class DNA {
     let childGenes = [];
 
     // Encontra o ponto de corte, escolhendo um ponto aleatório no DNA
-    let cuttingPoint = Math.floor(Math.random() * this.genes.length);
     let currGene;
     for (let i = 0; i < this.genes.length; i++) {
-      if (i > cuttingPoint) {
-        // Cópia dos genes do "pai"
-        currGene = this.genes[i];
-      } else {
-        // Cópia dos genes da "mãe"
-        currGene = partner.genes[i];
-      }
+      currGene = p5.Vector.add(this.genes[i], partner.genes[i]).div(2);
       childGenes[i] = this.mutate(currGene, mutationRate);
     }
     return new DNA(this.length, childGenes);

@@ -61,7 +61,7 @@ class Walker {
 
     const { x: px, y: py } = this.position;
     // Se chegar no alvo
-    if (dist(px, py, target.x, target.y) < 10) {
+    if (dist(px, py, target.x, target.y) < 2) {
       this.completed = frameCount % this.lifespan;
       this.position = target.copy();
     }

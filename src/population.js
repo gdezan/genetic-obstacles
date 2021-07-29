@@ -5,9 +5,11 @@ class Population {
     this.populationSize = size;
     this.lifespan = lifespan;
     this.maxFitness = 0;
+    this.lastMaxFitness = 0;
+    this.smallVarianceCounter = 0;
+    this.maxElement = 0;
     this.totalFitness = 0;
     this.obstacles = obstacles;
-    this.fitnessPool = [];
     this.allFinished = false;
     this.target = target;
 
@@ -17,8 +19,20 @@ class Population {
     }
   }
 
+  evaluateMutationRate(mutationRate, originalMutationRate) {
+    if ((this.maxFitness - this.lastMaxFitness) < 0.001) {
+      this.smallVarianceCounter += 1;
+      if (this.smallVarianceCounter > 10) {
+        this.smallVarianceCounter = 0;
+        return mutationRate * 2; 
+      }
+      return mutationRate;
+    }
+    return originalMutationRate;
+  }
+
   evaluate() {
-    this.maxFitness = 0;
+    this.lastMaxFitness = this.maxFitness;
     this.totalFitness = 0;
 
     // Guarda o tempo do indivíduo que passou mais tempo "vivo"
@@ -31,10 +45,10 @@ class Population {
       const fitness = this.elements[i].calcFitness(this.target, maxTimeAlive);
       this.totalFitness += fitness;
 
-      // Faz uma lista de intervalos de notas, para utilizar na seleção dos indíviduos "pai" e "mãe"
-      this.fitnessPool[i] = this.totalFitness;
+      // Calcula o "maior de todos"
       if (fitness >= this.maxFitness) {
         this.maxFitness = fitness;
+        this.maxElement = i;
       }
     }
     return this.maxFitness;
@@ -44,35 +58,16 @@ class Population {
   selection(mutationRate) {
     const Element = this.Element;
     let newElements = [];
-    let parentA;
-    let parentB;
     let childDNA;
     for (let i = 0; i < this.populationSize; i++) {
-      parentA = this.getParent();
-      parentB = this.getParent();
-      childDNA = parentA.crossover(parentB, mutationRate);
-      newElements[i] = new Element(this.lifespan, childDNA);
-    }
-    this.elements = newElements;
-  }
-
-  getParent() {
-    // Pega um valor de 0 até soma das notas/fitness dos indivíduos
-    const value = Math.random() * this.totalFitness;
-
-    for (let i in this.fitnessPool) {
-      if (this.fitnessPool[i] >= value) {
-        // EX: indivíduo a tem nota 3, b tem nota 5 e c tem nota 2
-        // A fitness pool fica como [3, (3+5), (3+5+2)] = [3, 8, 10]
-        // "value" virá um valor entre 0 e 10, então se value for "4", ele se encaixa no intervalo
-        // entre 3 e 8, portanto seu "pai" é o elements[1]
-        return this.elements[i].dna;
+      if (i != this.maxElement) {
+        childDNA = this.elements[this.maxElement].dna.crossover(this.elements[i].dna, mutationRate);
+        newElements[i] = new Element(this.lifespan, childDNA);
+      } else {
+        newElements[i] = new Element(this.lifespan, this.elements[this.maxElement].dna);
       }
     }
-
-    // Caso não ache um valor válido
-    console.warn("Failed fitness pool");
-    return this.elements[Math.floor(Math.random() * this.populationSize)].dna;
+    this.elements = newElements;
   }
 
   // Exibição da população
