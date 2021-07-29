@@ -4,6 +4,8 @@ O projeto tem por objetivo implementar um algoritmo evolutivo para desvio de obs
 
 Disponível em [https://gdezan.github.io/genetic-obstacles/](https://gdezan.github.io/genetic-obstacles/)
 
+![alt text](https://github.com/gdezan/genetic-obstacles/blob/master/assets/execution.gif 'Execução da aplicação')
+
 # Funcionamento da aplicação
 
 ![alt text](https://github.com/gdezan/genetic-obstacles/blob/master/assets/initial_screen.png 'Tela inicial da aplicação')
