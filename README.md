@@ -52,6 +52,12 @@ A mutação dos cromossomos é feita logo após a etapa anterior. É calculado u
 
 Para o rearranjo da população, a troca é feita simplesmente substituindo todos os indivíduos velhos pelos novos, com exceção do melhor de todos.
 
+# Atualizações na aplicação
+
+Foi implementada uma funcionalidade que insere em um gráfico, em tempo real, a nota do melhor de todos a cada geração além da média das notas da população. Segue o GIF mostrando a aplicação funcionando:
+
+![alt text](https://github.com/gdezan/genetic-obstacles/blob/master/assets/graph.gif 'Execução da aplicação com o gráfico')
+
 # Membros da equipe
 
 - Gabriel de Andrade Dezan - gabrieldezan@usp.br
