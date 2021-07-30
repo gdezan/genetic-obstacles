@@ -8,6 +8,11 @@
     <script src="src/dna.js"></script>
     <script src="src/population.js"></script>
     <script src="src/walker.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"
+      integrity="sha256-yz7K02nILYEeRDwEfzu/1zI9SpBKod/nLYMTFh7vszs="
+      crossorigin="anonymous"
+    ></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -84,6 +89,9 @@
           <div class="current-mutation">Taxa de mutação atual: 1%</div>
         </div>
       </div>
+    </div>
+    <div class="chart-container" style="position: relative; height: 500px; width: 900px">
+      <canvas id="chart"></canvas>
     </div>
     <script src="src/main.js"></script>
   </body>

@@ -36,7 +36,7 @@ class Walker {
       }
 
       // Função inversa para avaliar, levando em conta a distância final e o tempo "vivo"
-      this.fitness = timeAliveFactor - distance / 500;
+      this.fitness = timeAliveFactor - distance / 600;
     }
 
     return this.fitness;

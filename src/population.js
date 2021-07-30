@@ -40,6 +40,7 @@ class Population {
 
   evaluate() {
     this.lastMaxFitness = this.maxFitness;
+    let totalFitness = 0;
 
     // Guarda o tempo do indivíduo que passou mais tempo "vivo"
     const maxTimeAlive = Math.max.apply(
@@ -49,6 +50,7 @@ class Population {
 
     for (let i = 0; i < this.populationSize; i++) {
       const fitness = this.elements[i].calcFitness(this.target, maxTimeAlive);
+      totalFitness += fitness;
 
       // Calcula o "maior de todos"
       if (fitness >= this.maxFitness) {
@@ -56,10 +58,10 @@ class Population {
         this.maxElement = i;
       }
     }
-    return this.maxFitness;
+    return [this.maxFitness, totalFitness / this.populationSize];
   }
 
-  // Faz o crossover dos indivíduos da população (roleta adaptada)
+  // Faz o crossover dos indivíduos da população (elitismo)
   selection(mutationRate) {
     const Element = this.Element;
     let newElements = [];

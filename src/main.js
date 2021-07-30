@@ -1,4 +1,5 @@
 const canvasContainer = document.querySelector(".canvas");
+const chartCtx = document.getElementById("chart").getContext("2d");
 
 // Success
 const successBanner = document.querySelector(".success");
@@ -25,7 +26,7 @@ const lifespanSlider = document.querySelector("#lifespan-slider");
 const mutationValue = document.querySelector("#mutation-value");
 const mutationSlider = document.querySelector("#mutation-slider");
 
-let allFitness = [];
+let chartData = [];
 
 // Quantidade inicial de indivíduos
 let populationSize = 100;
@@ -44,11 +45,13 @@ let walkerSpeed = 10;
 let population;
 let target;
 let maxFitness;
+let avgFitness;
 let frameCount;
 let generation;
 let started;
 let playing;
 let obstacles;
+let chartInstance;
 
 let isSuccessShowing = false;
 
@@ -59,7 +62,7 @@ function resetState(options = {}) {
 
   successBanner.classList.add("hidden");
   isSuccessShowing = false;
-  allFitness = [];
+  chartData = [];
 
   // Conferir se o usuário deu o play inicial
   started = stop != null ? !stop : started;
@@ -105,6 +108,8 @@ function setup() {
   canvas.mousePressed(onCanvasMousePressed);
   canvas.mouseReleased(onCanvasMouseReleased);
   canvas.parent("canvas");
+
+  chartInstance = new Chart(chartCtx, getChartConfig(chartData));
 
   target = createVector(width / 2, 50);
   spawn = createVector(width / 2, height - 50);
@@ -157,14 +162,15 @@ function draw() {
     frameCount = 0;
 
     // Calcula a maior nota entre os indivíduos
-    maxFitness = population.evaluate(target);
+    [maxFitness, avgFitness] = population.evaluate(target);
 
-    allFitness.push(maxFitness);
+    chartData.push({ maxFitness, avgFitness });
+    chartInstance.data = getChartData(chartData);
+    chartInstance.update();
 
     if (maxFitness >= 1 && !isSuccessShowing) {
       successBanner.classList.remove("hidden");
       isSuccessShowing = true;
-      console.table(allFitness);
     }
 
     // Faz a geração da nova população
@@ -257,4 +263,52 @@ function accentPlaybackButton(button) {
       playbackButton.classList.remove("accent-svg");
     }
   });
+}
+
+// Funções auxiliares para o gráfico
+function getChartData(rawData) {
+  const labels = [];
+  for (let i in rawData) {
+    labels.push(i.toString());
+  }
+  return {
+    labels,
+    datasets: [
+      {
+        label: "Nota máxima",
+        data: rawData.map((g) => g.maxFitness),
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgb(255, 99, 132)",
+      },
+      {
+        label: "Nota média",
+        data: rawData.map((g) => g.avgFitness),
+        borderColor: "rgb(54, 162, 235)",
+        backgroundColor: "rgb(54, 162, 235)",
+      },
+    ],
+  };
+}
+
+function getChartConfig(rawData) {
+  return {
+    type: "line",
+    data: getChartData(rawData),
+    options: {
+      responsive: false,
+      layout: {
+        padding: 20,
+      },
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top",
+        },
+        title: {
+          display: true,
+          text: "Nota máxima e nota média",
+        },
+      },
+    },
+  };
 }
