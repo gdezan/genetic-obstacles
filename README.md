@@ -8,7 +8,7 @@ Disponível em [https://gdezan.github.io/genetic-obstacles/](https://gdezan.gith
 
 # Vídeo da apresentação
 
-Disponível em [https://drive.google.com/file/d/14_JwMrxvMEgdS6-Tt76V0tLPP1ScfBTj/view](https://drive.google.com/file/d/14_JwMrxvMEgdS6-Tt76V0tLPP1ScfBTj/view).
+Disponível em [https://drive.google.com/file/d/1Twhjcl8LE4oSStH5bCX2pXoStLqXG_IA/view](https://drive.google.com/file/d/1Twhjcl8LE4oSStH5bCX2pXoStLqXG_IA/view).
 
 # Funcionamento da aplicação
 
