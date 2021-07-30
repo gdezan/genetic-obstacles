@@ -24,7 +24,7 @@ Por fim, abaixo do menu de sliders há um mostrador da quantidade de frames, da 
 
 ## Inicialização da população
 
-A população é inicializada com indivíduos de gene aleatório, sendo que cada cromossomo do gene é um vetor com direção aleatória. O tamanho da população pode ser definido através do menu de sliders. O tamanho de cada gene é definido pelo tempo de vida de cada indivíduo.
+A população é inicializada com cromossomos de genes aleatórios, sendo que cada gene do cromossomo é um vetor com direção aleatória. O tamanho da população pode ser definido através do menu de sliders. O tamanho de cada cromossomo é definido pelo tempo de vida de cada indivíduo.
 
 ## Avaliação
 
@@ -42,7 +42,7 @@ Para realizar a seleção dos indivíduos da nova geração, é utilizado o mét
 
 ## Mutação
 
-A mutação dos cromossomos é feita logo após a etapa anterior. É calculado um valor aleatório entre 0 e 1. Se esse valor for menor que a taxa de mutação, o cromossomo em questão é mutado para um vetor de direção aleatória. Além disso, também utilizamos o esquema de mutação variável. Se após dez vezes o fitness do melhor de todos não aumentar dentro de um delta igual a 0.0001, então a taxa de mutação é dividida pela metade. Isso é realizado duas vezes. Se continuar falhando, ela aumenta até que continue sendo menor que 100%. Se passar disso, o valor é restaurado para a taxa de mutação original. Dessa forma, para uma taxa de mutação original de 1%, as taxas seriam então 1%, 0.5%, 0.25%, 2%, 4%, 8%, 16%, 32%, 64%, 1%, etc.
+A mutação dos cromossomos é feita logo após a etapa anterior. É calculado um valor aleatório entre 0 e 1. Se esse valor for menor que a taxa de mutação, o gene do cromossomo em questão é mutado para um vetor de direção aleatória. Além disso, também utilizamos o esquema de mutação variável. Se após dez vezes o fitness do melhor de todos não aumentar dentro de um delta igual a 0.0001, então a taxa de mutação é dividida pela metade. Isso é realizado duas vezes. Se continuar falhando, ela aumenta até que continue sendo menor que 100%. Se passar disso, o valor é restaurado para a taxa de mutação original. Dessa forma, para uma taxa de mutação original de 1%, as taxas seriam então 1%, 0.5%, 0.25%, 2%, 4%, 8%, 16%, 32%, 64%, 1%, etc.
 
 ## Rearranjo da população
 
