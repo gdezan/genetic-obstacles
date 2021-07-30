@@ -2,9 +2,13 @@
 
 O projeto tem por objetivo implementar um algoritmo evolutivo para desvio de obstáculos para acertar um alvo. Os obstáculos são inseridos pelo próprio usuário, por meio da interface.
 
-Disponível em [https://gdezan.github.io/genetic-obstacles/](https://gdezan.github.io/genetic-obstacles/)
+Disponível em [https://gdezan.github.io/genetic-obstacles/](https://gdezan.github.io/genetic-obstacles/).
 
 ![alt text](https://github.com/gdezan/genetic-obstacles/blob/master/assets/execution.gif 'Execução da aplicação')
+
+# Vídeo da apresentação
+
+Disponível em [https://drive.google.com/file/d/14_JwMrxvMEgdS6-Tt76V0tLPP1ScfBTj/view](https://drive.google.com/file/d/14_JwMrxvMEgdS6-Tt76V0tLPP1ScfBTj/view).
 
 # Funcionamento da aplicação
 
