@@ -65,6 +65,7 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .playback {
@@ -149,16 +150,25 @@ body {
 }
 
 .box-shadow {
-  box-shadow:
-  0 2.3px 2px rgba(0, 0, 0, 0.018),
-  0 5.3px 4.6px rgba(0, 0, 0, 0.026),
-  0 9.5px 8.3px rgba(0, 0, 0, 0.032),
-  0 15.7px 13.8px rgba(0, 0, 0, 0.038),
-  0 25.9px 22.8px rgba(0, 0, 0, 0.044),
-  0 45.3px 39.8px rgba(0, 0, 0, 0.052),
-  0 98px 86px rgba(0, 0, 0, 0.07)
-;
+  box-shadow: 0 2.3px 2px rgba(0, 0, 0, 0.018), 0 5.3px 4.6px rgba(0, 0, 0, 0.026),
+    0 9.5px 8.3px rgba(0, 0, 0, 0.032), 0 15.7px 13.8px rgba(0, 0, 0, 0.038),
+    0 25.9px 22.8px rgba(0, 0, 0, 0.044), 0 45.3px 39.8px rgba(0, 0, 0, 0.052),
+    0 98px 86px rgba(0, 0, 0, 0.07);
+}
 
+.success {
+  padding: 8px;
+  border-radius: 8px 8px 0 0;
+  background-color: limegreen;
+  color: white;
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: -38px;
+  z-index: -1;
+}
+
+.hidden {
+  transform: translateY(50px);
 }
 
 @media screen and (min-width: 1000px) {

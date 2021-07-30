@@ -1,9 +1,13 @@
 const canvasContainer = document.querySelector(".canvas");
 
+// Success
+const successBanner = document.querySelector(".success");
+
 // Info panel
 const countText = document.querySelector(".count");
 const generationText = document.querySelector(".generation");
 const maxFit = document.querySelector(".max-fit");
+const currentMutationRateText = document.querySelector(".current-mutation");
 
 // Playback buttons
 const playButton = document.querySelector("#play-button");
@@ -21,6 +25,8 @@ const lifespanSlider = document.querySelector("#lifespan-slider");
 const mutationValue = document.querySelector("#mutation-value");
 const mutationSlider = document.querySelector("#mutation-slider");
 
+let allFitness = [];
+
 // Quantidade inicial de indivíduos
 let populationSize = 100;
 
@@ -28,7 +34,7 @@ let populationSize = 100;
 let lifespan = 200;
 
 // Taxa de mutação inicial
-const originalMutationRate = 0.01;
+let originalMutationRate = 0.01;
 let mutationRate = 0.01;
 
 // Velocidade inicial do indivíduo
@@ -44,10 +50,16 @@ let started;
 let playing;
 let obstacles;
 
+let isSuccessShowing = false;
+
 let currRect = { x: 0, y: 0, w: 0, h: 0 };
 
 function resetState(options = {}) {
   const { keepPlaying = false, resetObstacles = true, stop } = options;
+
+  successBanner.classList.add("hidden");
+  isSuccessShowing = false;
+  allFitness = [];
 
   // Conferir se o usuário deu o play inicial
   started = stop != null ? !stop : started;
@@ -77,11 +89,14 @@ function resetState(options = {}) {
   elementsValue.textContent = populationSize;
   speedSlider.value = walkerSpeed;
   speedValue.textContent = walkerSpeed;
-  mutationSlider.value = mutationRate * 500;
-  mutationValue.textContent = `${(mutationRate * 100).toFixed(2)}%`;
+  mutationSlider.value = originalMutationRate * 500;
+  mutationValue.textContent = `${(originalMutationRate * 100).toFixed(2)}%`;
   countText.textContent = `Frames: ${frameCount}`;
   generationText.textContent = `Geração: ${generation}`;
   maxFit.textContent = `Nota máxima: ${maxFitness.toFixed(4)}`;
+  currentMutationRateText.textContent = `Taxa de mutação atual: ${(mutationRate * 100).toFixed(
+    2
+  )}%`;
 }
 
 // Função de inicialização do "canvas"
@@ -144,6 +159,14 @@ function draw() {
     // Calcula a maior nota entre os indivíduos
     maxFitness = population.evaluate(target);
 
+    allFitness.push(maxFitness);
+
+    if (maxFitness >= 1 && !isSuccessShowing) {
+      successBanner.classList.remove("hidden");
+      isSuccessShowing = true;
+      console.table(allFitness);
+    }
+
     // Faz a geração da nova população
     mutationRate = population.evaluateMutationRate(mutationRate, originalMutationRate);
     population.selection(mutationRate);
@@ -151,6 +174,9 @@ function draw() {
     generation++;
     generationText.textContent = `Geração: ${generation}`;
     maxFit.textContent = `Nota máxima: ${maxFitness.toFixed(4)}`;
+    currentMutationRateText.textContent = `Taxa de mutação atual: ${(mutationRate * 100).toFixed(
+      2
+    )}%`;
   }
 }
 
@@ -219,6 +245,7 @@ mutationSlider.addEventListener("input", (e) => {
 });
 mutationSlider.addEventListener("change", (e) => {
   mutationRate = e.target.value / 500;
+  originalMutationRate = e.target.value / 500;
 });
 
 function accentPlaybackButton(button) {

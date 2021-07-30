@@ -8,9 +8,12 @@
     <script src="src/dna.js"></script>
     <script src="src/population.js"></script>
     <script src="src/walker.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Desvio de obstáculos</title>
   </head>
   <body>
@@ -19,6 +22,7 @@
     </div>
     <div class="main-container">
       <div class="full-canvas">
+        <div class="success hidden">SUCESSO!</div>
         <div class="box-shadow" id="canvas"></div>
         <div class="playback box-shadow">
           <button class="control-button btn" id="play-button">
@@ -63,13 +67,21 @@
               Duração da geração:
               <div class="slider-value" id="lifespan-value">200 frames</div>
             </div>
-            <input type="range" value="200" min="10" max="600" class="slider" id="lifespan-slider" />
+            <input
+              type="range"
+              value="200"
+              min="10"
+              max="600"
+              class="slider"
+              id="lifespan-slider"
+            />
           </div>
         </div>
         <div class="info box-shadow">
           <div class="count">Frames: 0</div>
           <div class="generation">Geração: 0</div>
           <div class="max-fit">Nota máxima: 0</div>
+          <div class="current-mutation">Taxa de mutação atual: 1%</div>
         </div>
       </div>
     </div>

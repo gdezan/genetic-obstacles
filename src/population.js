@@ -1,3 +1,5 @@
+const VARIABLE_MUTATION_RATE_FACTORS = [1, 0.5, 0.25, 2, 4, 8, 16, 32, 64];
+
 class Population {
   constructor(Element, size, lifespan, target, obstacles = []) {
     this.Element = Element;
@@ -8,7 +10,6 @@ class Population {
     this.lastMaxFitness = 0;
     this.smallVarianceCounter = 0;
     this.maxElement = 0;
-    this.totalFitness = 0;
     this.obstacles = obstacles;
     this.allFinished = false;
     this.target = target;
@@ -20,20 +21,25 @@ class Population {
   }
 
   evaluateMutationRate(mutationRate, originalMutationRate) {
-    if ((this.maxFitness - this.lastMaxFitness) < 0.001) {
+    // Cálculo da taxa de mutação variável
+    if (this.maxFitness - this.lastMaxFitness < 0.001) {
+      // Adiciona ao contador
       this.smallVarianceCounter += 1;
-      if (this.smallVarianceCounter > 10) {
-        this.smallVarianceCounter = 0;
-        return mutationRate * 2; 
+      const factorIndex = Math.floor(this.smallVarianceCounter / 10);
+      const newMutationRate = originalMutationRate * VARIABLE_MUTATION_RATE_FACTORS[factorIndex];
+
+      if (newMutationRate < 1) {
+        // Conferir se é menor que 100%
+        return newMutationRate;
       }
-      return mutationRate;
     }
+
+    this.smallVarianceCounter = 0;
     return originalMutationRate;
   }
 
   evaluate() {
     this.lastMaxFitness = this.maxFitness;
-    this.totalFitness = 0;
 
     // Guarda o tempo do indivíduo que passou mais tempo "vivo"
     const maxTimeAlive = Math.max.apply(
@@ -43,7 +49,6 @@ class Population {
 
     for (let i = 0; i < this.populationSize; i++) {
       const fitness = this.elements[i].calcFitness(this.target, maxTimeAlive);
-      this.totalFitness += fitness;
 
       // Calcula o "maior de todos"
       if (fitness >= this.maxFitness) {

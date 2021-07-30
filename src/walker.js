@@ -22,13 +22,13 @@ class Walker {
     let distance = dist(this.position.x, this.position.y, target.x, target.y);
 
     // Nota do tempo de vida do indivíduo, em relação ao tempo máximo de vida
-    const timeAliveFactor = ((this.count % this.lifespan) / maxTimeAlive) * 10;
+    const timeAliveFactor = (this.count % this.lifespan) / maxTimeAlive;
 
     if (this.completed > 0) {
       // Se chegou no "alvo", o cálculo muda para favorecer indivíduos mais rápidos
-      // N = (x/50 + 1)^3, onde x é o quanto resta de tempo na geração após o indivíduo chegar
+      // N = x + 1, onde x é o quanto resta de tempo na geração após o indivíduo chegar
       // no "alvo"
-      this.fitness = Math.pow((this.lifespan - this.completed) / 50 + 1, 3);
+      this.fitness = ((this.lifespan - this.completed) * 0.01) / this.lifespan + 1;
     } else {
       if (this.closestDistance < distance) {
         // Ele passou por um lugar próximo do alvo antes de bater
@@ -36,12 +36,7 @@ class Walker {
       }
 
       // Função inversa para avaliar, levando em conta a distância final e o tempo "vivo"
-      this.fitness = 20 / (distance + timeAliveFactor - 20);
-    }
-
-    if (this.crashed) {
-      // Penalidade por "bater" em obstáculos
-      this.fitness = this.fitness / 2;
+      this.fitness = timeAliveFactor - distance / 500;
     }
 
     return this.fitness;
@@ -61,7 +56,7 @@ class Walker {
 
     const { x: px, y: py } = this.position;
     // Se chegar no alvo
-    if (dist(px, py, target.x, target.y) < 2) {
+    if (dist(px, py, target.x, target.y) < 10) {
       this.completed = frameCount % this.lifespan;
       this.position = target.copy();
     }
