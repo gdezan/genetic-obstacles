@@ -17,9 +17,9 @@ class DNA {
   crossover(partner, mutationRate) {
     let childGenes = [];
 
-    // Encontra o ponto de corte, escolhendo um ponto aleatório no DNA
     let currGene;
     for (let i = 0; i < this.genes.length; i++) {
+      // Faz a média dos genes dos pais
       currGene = p5.Vector.add(this.genes[i], partner.genes[i]).div(2);
       childGenes[i] = this.mutate(currGene, mutationRate);
     }

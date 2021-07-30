@@ -2,9 +2,13 @@
 
 O projeto tem por objetivo implementar um algoritmo evolutivo para desvio de obstáculos para acertar um alvo. Os obstáculos são inseridos pelo próprio usuário, por meio da interface.
 
-Disponível em [https://gdezan.github.io/genetic-obstacles/](https://gdezan.github.io/genetic-obstacles/)
+Disponível em [https://gdezan.github.io/genetic-obstacles/](https://gdezan.github.io/genetic-obstacles/).
 
 ![alt text](https://github.com/gdezan/genetic-obstacles/blob/master/assets/execution.gif 'Execução da aplicação')
+
+# Vídeo da apresentação
+
+Disponível em [https://drive.google.com/file/d/14_JwMrxvMEgdS6-Tt76V0tLPP1ScfBTj/view](https://drive.google.com/file/d/14_JwMrxvMEgdS6-Tt76V0tLPP1ScfBTj/view).
 
 # Funcionamento da aplicação
 
@@ -31,7 +35,7 @@ A população é inicializada com cromossomos de genes aleatórios, sendo que ca
 Para o cálculo do fitness de cada indivíduo, segue o passo a passo:
 
 1. É calculada a distância do indivíduo ao alvo;
-2. É calculado o tempo de vida do indivíduo, de forma que esse tempo é normalizado em relação ao tempo do indivíduo que passou mais tempo vivo. Essa norma é multiplicada por 10, de forma que o indivíduo que passou mais tempo vivo obtém 10 "pontos";
+2. É calculado o tempo de vida do indivíduo, de forma que esse tempo é normalizado em relação ao tempo do indivíduo que passou mais tempo vivo;
 3. É verificado se o indivíduo chegou no alvo;
 4. Se sim, o fitness dele é dado por: (((tempo que resta para finalizar a geração) * 0.01 / (tempo de vida da população)) + 1). Dessa forma, indivíduos que chegam mais rápidos no alvo são beneficiados, pois quanto maior for o tempo que resta para finalizar a geração, significa que ele chegou bastante rápido no alvo;
 5. Caso o indivíduo não tenha chegado no alvo, é verificado se o indivíduo já passou por um lugar próximo do alvo anteriormente. Se sim, fazemos uma média da distância atual com a menor, a fim de tentar levar a uma distância mais próxima. Então, o fitness é calculado da seguinte forma: (nota do tempo de vida do indivíduo - (distância até o alvo / 500)). Dessa forma, distâncias menores subtraem menos do fitness, enquanto distâncias maiores, subtraem mais.
