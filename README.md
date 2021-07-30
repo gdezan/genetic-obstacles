@@ -35,7 +35,6 @@ Para o cálculo do fitness de cada indivíduo, segue o passo a passo:
 3. É verificado se o indivíduo chegou no alvo;
 4. Se sim, o fitness dele é dado por: (((tempo que resta para finalizar a geração) / (tempo de vida da população)) + 1). Dessa forma, indivíduos que chegam mais rápidos no alvo são beneficiados, pois quanto maior for o tempo que resta para finalizar a geração, significa que ele chegou bastante rápido no alvo;
 5. Caso o indivíduo não tenha chegado no alvo, é verificado se o indivíduo já passou por um lugar próximo do alvo anteriormente. Se sim, fazemos uma média da distância atual com a menor, a fim de tentar levar a uma distância mais próxima. Então, o fitness é calculado da seguinte forma: 20 / (distância até o alvo + nota do tempo de vida do indivíduo - 20);
-6. Por fim, também é verificado se o indivíduo bateu em algum obstáculo. Se sim, reduzimos o fitness dele pela metade a fim de punir esse comportamento.
 
 ## Seleção
 
